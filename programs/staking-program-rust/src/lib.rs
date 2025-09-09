@@ -37,19 +37,20 @@ pub struct Initialize<'info> {
 
     #[account(
         init_if_needed,
-        seeds =[constant::VAULT_SEED, mint.key().as_ref(), b"account"],
+        seeds = [constant::VAULT_SEED, mint.key().as_ref(), b"account"],
         bump,
         payer = signer,
         token::mint = mint,
         token::authority = token_vault_account,
     )]
-
     pub token_vault_account: Account<'info, TokenAccount>,
 
+   
     pub mint: Account<'info, Mint>,
 
     pub token_program: Program<'info, Token>,
-    pub system_program: Program<'info, System>
+    pub system_program: Program<'info, System>,
+    pub rent: Sysvar<'info, Rent>,
 }
 
 
